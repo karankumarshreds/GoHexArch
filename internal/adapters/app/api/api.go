@@ -12,23 +12,39 @@ type Adapter struct {
 
 /* think of the api/application layer as controllers */
 
+func NewAdapter(arith ports.ArithmeticPort) *Adapter {
+	return &Adapter{arith: arith}
+}
+
 func (apiA Adapter) GetAddition(a, b int32) (int32, error){
 	result, err := apiA.arith.Addition(a, b)
-	return result, err
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
 func (apiA Adapter) GetSubtraction(a, b int32) (int32, error){
 	result, err := apiA.arith.Subtraction(a, b)
-	return result, err
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
 func (apiA Adapter) GetMultiplication(a, b int32) (int32, error){
 	result, err := apiA.arith.Multiplication(a, b)
-	return result, err
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
 func (apiA Adapter) GetDivision(a, b int32) (int32, error){
 	result, err := apiA.arith.Division(a, b)
-	return result, err
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
