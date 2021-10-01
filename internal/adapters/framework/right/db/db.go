@@ -25,4 +25,17 @@ func NewAdapter(driverName, dataSourceName string) (*Adapter) {
 	return &Adapter{ db: db }
 }
 
+func (da Adapter) CloseDBConnection() {
+	err := da.db.Close()
+	if err != nil {
+		log.Fatalf("DB Close failure: %v", err)
+	}
+}
+
+func (da Adapter) AddToHistory(answer int32, operation string)  error {
+	return da.db.QueryRow(
+		"INSERT INTO arith_history(operation, answer, date) VALUES($1, $2) RETURNING operation, answer, date",
+		operation, answer, time.Now(),
+	).Scan()
+}
 

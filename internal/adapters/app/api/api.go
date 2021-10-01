@@ -8,12 +8,13 @@ type Adapter struct {
 	// in order to access the underneath layer 
 	// we need to have its port 
 	arith ports.ArithmeticPort
+	db ports.DBPort
 }
 
 /* think of the api/application layer as controllers */
 
-func NewAdapter(arith ports.ArithmeticPort) *Adapter {
-	return &Adapter{arith: arith}
+func NewAdapter(arith ports.ArithmeticPort, db ports.DBPort) *Adapter {
+	return &Adapter{arith: arith, db: db}
 }
 
 func (apiA Adapter) GetAddition(a, b int32) (int32, error){
