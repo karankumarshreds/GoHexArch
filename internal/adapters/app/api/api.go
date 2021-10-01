@@ -34,7 +34,7 @@ func (apiA Adapter) GetSubtraction(a, b int32) (int32, error){
 	if err != nil {
 		return 0, err
 	}
-	err = apiA.db.AddToHistory(result, "Subtraction")
+	err = apiA.db.AddToHistory(result, "subtraction")
 	if err != nil {
 		return 0, err
 	}
